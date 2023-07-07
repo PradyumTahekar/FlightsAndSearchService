@@ -1,1 +1,3 @@
-## this is just the heading
+## Flights Table
+
+-id -> unique id to identify each flights
