@@ -19,6 +19,7 @@ class CityRepository {
                     id: cityId
                 }
             });
+            return true;
         } catch (error) {
 
             console.log("Something went wrong inside the repository layer");
@@ -39,7 +40,7 @@ class CityRepository {
         }
     }
 
-    async updateCity(cityId, data)
+    async updateCity(cityId, data) // here data is object like {name: "Indore"}
     {
         try {
             const city = await City.update(data, {
@@ -47,7 +48,7 @@ class CityRepository {
                     id: cityId
                 }
             })
-
+            return city;
             
         } catch (error) {
             console.log("Something went wrong inside the repository layer");
