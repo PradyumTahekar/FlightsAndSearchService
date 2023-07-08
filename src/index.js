@@ -19,7 +19,7 @@ const setupAndStartServer = async () => {
         console.log(`Server started at ${PORT}`);
         // const repo = new CityRepository();
         // repo.createCity({name:"Indore"});
-        // repo.deleteCity(49);
+        // repo.deleteCity(50);
         
     });
 }

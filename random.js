@@ -1,4 +1,5 @@
 const { CityService } = require('../services/index');
+
 const cityService = new CityService();
 
 const create = async (req, res) => {
@@ -7,7 +8,7 @@ const create = async (req, res) => {
         return res.status(201).json({
             data: city,
             success: true,
-            message: "City successfully created",
+            message: 'Successfully created a city',
             err: {}
         });
     } catch (error) {
@@ -15,21 +16,19 @@ const create = async (req, res) => {
         return res.status(500).json({
             data: {},
             success: false,
-            message: "Not able to creat city",
+            message: 'Not able to create a city',
             err: error
         });
     }
 }
-
-//DELETE -> /city/:id
-
+// DELETE. -> /city/:id
 const destroy = async (req, res) => {
     try {
-        const response = await cityService.deleteCity(req.param.id);
+        const response = await cityService.deleteCity(req.params.id);
         return res.status(200).json({
             data: response,
             success: true,
-            message: "City successfully deleted",
+            message: 'Successfully deleted a city',
             err: {}
         });
     } catch (error) {
@@ -37,7 +36,7 @@ const destroy = async (req, res) => {
         return res.status(500).json({
             data: {},
             success: false,
-            message: "Not able to delete city",
+            message: 'Not able to delete the city',
             err: error
         });
     }
@@ -46,11 +45,11 @@ const destroy = async (req, res) => {
 // GET -> /city/:id
 const get = async (req, res) => {
     try {
-        const city = await cityService.getCity(req.param.id);
+        const response = await cityService.getCity(req.params.id);
         return res.status(200).json({
-            data: city,
+            data: response,
             success: true,
-            message: "City successfully Fetched",
+            message: 'Successfully fetched a city',
             err: {}
         });
     } catch (error) {
@@ -58,20 +57,20 @@ const get = async (req, res) => {
         return res.status(500).json({
             data: {},
             success: false,
-            message: "Not able to get city",
+            message: 'Not able to get the city',
             err: error
         });
     }
 }
 
-//patch -> /city/:id ->req.body updata has two parameter
+// Patch -> /city/:id -> req.body
 const update = async (req, res) => {
     try {
-        const city = await cityService.updateCity(req.param.id, req.body);
+        const response = await cityService.updateCity(req.params.id, req.body);
         return res.status(200).json({
-            data: city,
+            data: response,
             success: true,
-            message: "City successfully created",
+            message: 'Successfully fetched a city',
             err: {}
         });
     } catch (error) {
@@ -79,17 +78,15 @@ const update = async (req, res) => {
         return res.status(500).json({
             data: {},
             success: false,
-            message: "Not able to creat city",
+            message: 'Not able to update the city',
             err: error
         });
     }
 }
-
-
 
 module.exports = {
     create,
     destroy,
-    update,
-    get
-};
+    get,
+    update
+}
