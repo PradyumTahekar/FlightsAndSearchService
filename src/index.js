@@ -3,7 +3,13 @@ const bodyParser = require("body-parser");
 
 const { PORT } = require('./config/serverConfig');
 const ApiRoutes = require('./routes/index');
+const db = require('./models/index');
+
 // const CityRepository = require('./repository/city-repository');
+// const AirportRepository = require('./repository/airport-repository');
+// const aircon = require('./controllers/airport-controller');
+// const AirportService = require('./services/airport-service');
+// const { City, Airport } = require('./models/index');
 
 const setupAndStartServer = async () => {
 
@@ -11,17 +17,28 @@ const setupAndStartServer = async () => {
     const app = express();
 
     app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({extended: true}));
+    app.use(bodyParser.urlencoded({ extended: true }));
 
-    app.use('/api',ApiRoutes);
+    app.use('/api', ApiRoutes);
 
     app.listen(PORT, async () => {
         console.log(`Server started at ${PORT}`);
-        // const repo = new CityRepository();
-        // repo.createCity({name:"Indore"});
-        // repo.deleteCity(50);
-        
+
+        if (process.env.SYNC_DB) {
+
+            db.sequelize.sync({ alter: true });
+        }
+
+        // const airport = new AirportService();
+        // airport.updateAirport(18,{address:"west of indor"});
+        // console.log("hi");
     });
+
+
+
+
+
+
 }
 
 setupAndStartServer();
